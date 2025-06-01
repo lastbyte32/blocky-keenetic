@@ -92,16 +92,6 @@ jobs:
       - name: Display artifacts
         run: ls -R ./out
 
-      - name: Commit and push version file
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add VERSION
-          git commit -m "Version ${{ steps.version.outputs.content }}"
-          git tag -a v${{ steps.version.outputs.content }} -m "Version ${{ steps.version.outputs.content }}"
-          git push origin v${{ steps.version.outputs.content }}
-          git push
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1.1.4
