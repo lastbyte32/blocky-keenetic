@@ -4,9 +4,9 @@ _clean:
 	mkdir -p out/$(BUILD_DIR)/data
 
 _download_bins:
-	@VERSION_NO_V=$$(echo ${VERSION} | sed 's/^v//') && \
-	FILENAME=blocky_v$${VERSION_NO_V}_Linux_arm64.tar.gz && \
-	TARGET_URL=https://github.com/0xERR0R/blocky/releases/download/${VERSION}/$$FILENAME && \
+	@BLOCKY_VERSION="$(VERSION)" && \
+	FILENAME=blocky_$${BLOCKY_VERSION}_Linux_arm64.tar.gz && \
+	TARGET_URL=https://github.com/0xERR0R/blocky/releases/download/$$BLOCKY_VERSION/$$FILENAME && \
 	rm -f out/blocky.tar.gz && \
 	rm -rf out/blocky && \
 	mkdir -p out/blocky && \

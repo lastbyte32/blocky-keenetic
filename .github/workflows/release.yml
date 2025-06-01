@@ -22,11 +22,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Bump version file
-        uses: francktrouillez/auto-bump-version-file@v1
-        with:
-          file: 'VERSION'
-
       - name: Build entware packages
         run: make all
 
@@ -50,11 +45,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Bump version file
-        uses: francktrouillez/auto-bump-version-file@v1
-        with:
-          file: 'VERSION'
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
@@ -86,11 +76,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Bump version file
-        uses: francktrouillez/auto-bump-version-file@v1
-        with:
-          file: 'VERSION'
 
       - name: Read version
         id: version
