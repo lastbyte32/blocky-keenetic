@@ -1,13 +1,2 @@
 #!/bin/sh
-
-if [ -z "$(grep ^\\[blocky\\] /opt/etc/ndm/netfilter.conf)" ]; then
-  echo "[blocky]" >> /opt/etc/ndm/netfilter.conf
-  echo "description = Blocky DNS proxy" >> /opt/etc/ndm/netfilter.conf
-  echo "table = filter" >> /opt/etc/ndm/netfilter.conf
-  echo "chain = INPUT" >> /opt/etc/ndm/netfilter.conf
-  echo "rule = -p udp --dport 53 -j ACCEPT" >> /opt/etc/ndm/netfilter.conf
-  echo "rule = -p tcp --dport 53 -j ACCEPT" >> /opt/etc/ndm/netfilter.conf
-  echo "enable = yes" >> /opt/etc/ndm/netfilter.conf
-fi
-
 /opt/etc/init.d/S99blocky restart

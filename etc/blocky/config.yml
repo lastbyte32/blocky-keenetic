@@ -1,15 +1,36 @@
-upstream:
-  default:
-    - 1.1.1.1
-    - 8.8.8.8
+connectIPVersion: v4
+log:
+  level: info
+  format: text
+
+ports:
+  dns: 53
+  http: 4000
+
+bootstrapDns:
+  upstream: "9.9.9.9"
+  ips: []
+
+upstreams:
+  strategy: parallel_best
+  groups:
+    default:
+      - https://dns.quad9.net/dns-query
+      - https://cloudflare-dns.com/dns-query
 
 blocking:
-  blackLists:
+  denylists:
     ads:
-      - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+      - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.txt
   clientGroupsBlock:
     default:
       - ads
 
-port: 53
-logLevel: info
+caching:
+  minTime: 5m
+  maxTime: 30m
+  prefetching: true
+
+prometheus:
+  enable: true
+  path: /metrics
