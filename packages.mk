@@ -4,7 +4,7 @@ _clean:
 	mkdir -p out/$(BUILD_DIR)/data
 
 _download_bins:
-	@BLOCKY_VERSION="$(VERSION)" && \
+	@BLOCKY_VERSION="v0.26.2" && \
 	FILENAME=blocky_$${BLOCKY_VERSION}_Linux_arm64.tar.gz && \
 	TARGET_URL=https://github.com/0xERR0R/blocky/releases/download/$$BLOCKY_VERSION/$$FILENAME && \
 	rm -f out/blocky.tar.gz && \

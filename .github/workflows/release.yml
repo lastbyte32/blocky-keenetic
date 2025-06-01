@@ -22,6 +22,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Bump version file
+        uses: francktrouillez/auto-bump-version-file@v1
+        with:
+          file: 'VERSION'
+
       - name: Build entware packages
         run: make all
 
@@ -45,6 +50,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Bump version file
+        uses: francktrouillez/auto-bump-version-file@v1
+        with:
+          file: 'VERSION'
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
@@ -77,6 +87,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Bump version file
+        uses: francktrouillez/auto-bump-version-file@v1
+        with:
+          file: 'VERSION'
+
       - name: Read version
         id: version
         uses: juliangruber/read-file-action@v1
@@ -91,6 +106,16 @@ jobs:
 
       - name: Display artifacts
         run: ls -R ./out
+
+      - name: Commit and push version file
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add VERSION
+          git commit -m "Version ${{ steps.version.outputs.content }}"
+          git tag -a v${{ steps.version.outputs.content }} -m "Version ${{ steps.version.outputs.content }}"
+          git push origin v${{ steps.version.outputs.content }}
+          git push
 
       - name: Create Release
         id: create_release
