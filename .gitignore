@@ -1,5 +1,2 @@
-.idea
-out/blocky.tar.gz
-out/blocky-keenetic_v0.26.2_aarch64-3.10.ipk
-out/blocky/
-out/
+/.idea/
+/out/
