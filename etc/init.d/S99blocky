@@ -1,0 +1,51 @@
+#!/bin/sh
+
+CONFIG=/opt/etc/blocky/config.yml
+PID_FILE=/opt/var/run/blocky.pid
+
+case "$1" in
+	start)
+		if [ -f "$PID_FILE" ]; then
+			pid=`cat $PID_FILE`
+			if [ -d /proc/$pid ]; then
+				echo "blocky already running with pid $pid"
+				exit 0
+			fi
+			rm -f $PID_FILE
+		fi
+		echo "Starting blocky..."
+		/opt/usr/bin/blocky --config $CONFIG > /dev/null 2>&1 &
+		echo $! > $PID_FILE
+		;;
+	stop)
+		if [ -f "$PID_FILE" ]; then
+			pid=`cat $PID_FILE`
+			if [ -d /proc/$pid ]; then
+				kill $pid
+			fi
+			rm -f $PID_FILE
+		fi
+		echo "blocky stopped"
+		;;
+	restart)
+		$0 stop
+		$0 start
+		;;
+	status)
+		if [ -f "$PID_FILE" ]; then
+			pid=`cat $PID_FILE`
+			if [ -d /proc/$pid ]; then
+				echo "blocky is running with pid $pid"
+				exit 0
+			fi
+		fi
+		echo "blocky is not running"
+		exit 1
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart|status}"
+		exit 1
+		;;
+esac
+
+exit 0
