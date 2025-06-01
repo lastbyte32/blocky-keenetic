@@ -1,6 +1,6 @@
 # Blocky-Keenetic
 
-[![Version](https://img.shields.io/badge/version-v0.26.2-blue.svg)](https://github.com/0xERR0R/blocky/releases/tag/v0.26.2)
+[![GitHub Release](https://img.shields.io/github/release/lastbyte32/blocky-keenetic?style=flat&color=green)](https://github.com/lastbyte32/blocky-keenetic/releases)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ## Описание
