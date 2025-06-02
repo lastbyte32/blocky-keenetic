@@ -89,21 +89,23 @@ system configuration save
 Файл конфигурации находится в `/opt/etc/blocky/config.yml`. По умолчанию используется следующая конфигурация:
 
 ```yaml
-upstream:
-  default:
-    - 1.1.1.1
-    - 8.8.8.8
-
+upstreams:
+  groups:
+    default:
+      - 46.182.19.48
+      - 80.241.218.68
+      - tcp-tls:fdns1.dismail.de:853
+      - https://dns.digitale-gesellschaft.ch/dns-query
 blocking:
-  blackLists:
+  denylists:
     ads:
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
   clientGroupsBlock:
     default:
       - ads
-
-port: 53
-logLevel: info
+ports:
+  dns: 53
+  http: 4000
 ```
 
 Вы можете изменить этот файл в соответствии с вашими потребностями. Подробную информацию о параметрах конфигурации можно найти в [документации Blocky](https://github.com/0xERR0R/blocky).
