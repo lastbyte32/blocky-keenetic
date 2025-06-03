@@ -2,8 +2,8 @@
 
 [![GitHub Release](https://img.shields.io/github/release/lastbyte32/blocky-keenetic?style=flat&color=green)](https://github.com/lastbyte32/blocky-keenetic/releases)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+![WIP](https://img.shields.io/badge/status-WIP-orange)
 
-![WIP](https://img.shields.io/badge/status-WIP-orange)  
 ⚠️ Пакет находится в активной разработке и может изменяться без предупреждения.
 
 ## Описание
