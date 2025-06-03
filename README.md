@@ -3,6 +3,9 @@
 [![GitHub Release](https://img.shields.io/github/release/lastbyte32/blocky-keenetic?style=flat&color=green)](https://github.com/lastbyte32/blocky-keenetic/releases)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
+![WIP](https://img.shields.io/badge/status-WIP-orange)  
+⚠️ Пакет находится в активной разработке и может изменяться без предупреждения.
+
 ## Описание
 
 Blocky-Keenetic - это пакет для установки [Blocky](https://github.com/0xERR0R/blocky) на маршрутизаторы Keenetic с установленным Entware. Blocky - это быстрый и легкий DNS-прокси, который работает как блокировщик рекламы для локальной сети с множеством функций.
