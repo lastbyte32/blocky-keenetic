@@ -28,15 +28,7 @@ Blocky-Keenetic - это пакет для установки [Blocky](https://g
 
 ### Подготовка Entware
 
-1. Установите необходимые зависимости:
-
-```bash
-opkg update
-opkg install ca-certificates wget-ssl
-opkg remove wget-nossl
-```
-
-2. Создайте директорию для репозитория и добавьте репозиторий в список источников Entware:
+ Создайте директорию для репозитория и добавьте репозиторий в список источников Entware:
 
 ```bash
 mkdir -p /opt/etc/opkg
