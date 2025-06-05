@@ -33,9 +33,6 @@ Blocky-Keenetic - это пакет для установки [Blocky](https://g
 ```bash
 mkdir -p /opt/etc/opkg
 ```
-
-Выберите репозиторий в зависимости от архитектуры вашего маршрутизатора:
-
 **Для aarch64-3.10** (Keenetic Peak (KN-2710), Ultra (KN-1811), Hopper (KN-3811), Hopper SE (KN-3812), Giga (KN-1012)):
 
 ```bash
