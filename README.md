@@ -146,4 +146,4 @@ make all
 ## Благодарности
 
 - [0xERR0R](https://github.com/0xERR0R) за создание [Blocky](https://github.com/0xERR0R/blocky)
-- Команде Keenetic за отличную платформу для маршрутизаторов
+- Команде Keenetic за крутые маршрутизаторы
