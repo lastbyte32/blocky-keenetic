@@ -1,9 +1,8 @@
 Package: blocky-keenetic
 Version: VERSION
-Depends: libc
 Section: net
 Architecture: ARCH
-Maintainer: 0xERR0R <https://github.com/0xERR0R/blocky>
+Maintainer: lastbyte32 <https://github.com/lastbyte32/blocky-keenetic>
 Source: https://github.com/0xERR0R/blocky
 License: MIT
 Description: Fast and lightweight DNS proxy as ad-blocker for local network with many features

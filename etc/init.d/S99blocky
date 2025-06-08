@@ -2,50 +2,67 @@
 
 CONFIG=/opt/etc/blocky/config.yml
 PID_FILE=/opt/var/run/blocky.pid
+LOG_FILE=/opt/var/log/blocky.log
 
 case "$1" in
-	start)
-		if [ -f "$PID_FILE" ]; then
-			pid=`cat $PID_FILE`
-			if [ -d /proc/$pid ]; then
-				echo "blocky already running with pid $pid"
-				exit 0
-			fi
-			rm -f $PID_FILE
-		fi
-		echo "Starting blocky..."
-		/opt/usr/bin/blocky --config $CONFIG > /dev/null 2>&1 &
-		echo $! > $PID_FILE
-		;;
-	stop)
-		if [ -f "$PID_FILE" ]; then
-			pid=`cat $PID_FILE`
-			if [ -d /proc/$pid ]; then
-				kill $pid
-			fi
-			rm -f $PID_FILE
-		fi
-		echo "blocky stopped"
-		;;
-	restart)
-		$0 stop
-		$0 start
-		;;
-	status)
-		if [ -f "$PID_FILE" ]; then
-			pid=`cat $PID_FILE`
-			if [ -d /proc/$pid ]; then
-				echo "blocky is running with pid $pid"
-				exit 0
-			fi
-		fi
-		echo "blocky is not running"
-		exit 1
-		;;
-	*)
-		echo "Usage: $0 {start|stop|restart|status}"
-		exit 1
-		;;
+    start)
+        if [ -f "$PID_FILE" ]; then
+            pid=$(cat "$PID_FILE")
+            if [ -d /proc/$pid ]; then
+                echo "Blocky already running with PID $pid"
+                exit 0
+            fi
+            rm -f "$PID_FILE"
+        fi
+
+        if netstat -tuln | grep -q ":53 "; then
+            echo "Port 53 is already in use. Blocky won't start."
+            exit 1
+        fi
+
+        echo "Starting blocky..."
+        /opt/usr/bin/blocky --config "$CONFIG" > "$LOG_FILE" 2>&1 &
+        BLOCKY_PID=$!
+
+        sleep 2
+
+        if ! kill -0 "$BLOCKY_PID" 2>/dev/null; then
+            echo "Blocky failed to start. See log at $LOG_FILE"
+            exit 1
+        fi
+
+        echo "$BLOCKY_PID" > "$PID_FILE"
+        echo "Blocky started with PID $BLOCKY_PID"
+        ;;
+    stop)
+        if [ -f "$PID_FILE" ]; then
+            pid=$(cat "$PID_FILE")
+            if [ -d /proc/$pid ]; then
+                kill "$pid"
+            fi
+            rm -f "$PID_FILE"
+        fi
+        echo "Blocky stopped"
+        ;;
+    restart)
+        $0 stop
+        $0 start
+        ;;
+    status)
+        if [ -f "$PID_FILE" ]; then
+            pid=$(cat "$PID_FILE")
+            if [ -d /proc/$pid ]; then
+                echo "Blocky is running with PID $pid"
+                exit 0
+            fi
+        fi
+        echo "Blocky is not running"
+        exit 1
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart|status}"
+        exit 1
+        ;;
 esac
 
 exit 0
